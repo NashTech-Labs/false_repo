@@ -24,7 +24,7 @@ This repository contains scripts to perform basic S3 bucket oprations like list 
     aws configure
     ```
 
-2. Now, from the current directory run the following command to delete the s3 policy.
+2. Now, from the current directory run the following command according to your need. Please update your bucket variables before use.
 
     ```
     # All bucket opration in one

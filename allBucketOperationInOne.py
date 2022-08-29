@@ -11,18 +11,18 @@ def list_bucket():
     response = s3_client.list_buckets()
 
     # Output the bucket names
+    count=0
     print('Existing buckets:')
     for bucket in response['Buckets']:
-        print(f'  {bucket["Name"]}')   
+        print(f'  {bucket["Name"]}')  
+        count+=1
+    print(f"Total number of buckets: {count}") 
 
 
-def create_bucket(bucket_name, region=None):
-    """Create an S3 bucket in a specified region
-
-    If a region is not specified, the bucket is created in the S3 default
-    region (us-east-1).
-
-    :param bucket_name: Bucket to create
+def create_bucket(bucket_name, region):
+    """This function creates an S3 bucket in a specified region
+    
+    :param bucketName: Bucket to create
     :param region: String region to create bucket in, e.g., 'us-west-2'
     :return: True if bucket created, else False
     """
@@ -50,6 +50,8 @@ def delete_bucket(bucket_name):
 
     :param bucket_name: Bucket to create
     :return: True if bucket created, else False
+
+    Warning: Make sure bucket is Empty i.e. no object is present in the bucket.
     """
     try:
         s3_client = boto3.client('s3')
@@ -69,15 +71,15 @@ if __name__ == '__main__':
     print("\t3. Delete a bucket")
     choice=input("Your Choice:")
     if choice=="1":
-        print("List Bucket")
+        print("List Operation Selected")
         list_bucket()
     elif choice=="2":   
-        print("List Create") 
+        print("Create Operation Selected") 
         BUCKET_NAME= input("Enter unique bucket name: ")
         REGION= input("Enter region for your Bucket: ")
         create_bucket(bucket_name=BUCKET_NAME, region=REGION)
     elif choice=="3":
-        print("List Delete") 
+        print("Delete Operation Selected") 
         BUCKET_NAME= input("Enter unique bucket name: ")
         # REGION= input("Enter region for your Bucket: ")
         delete_bucket(bucket_name=BUCKET_NAME) # region=REGION)

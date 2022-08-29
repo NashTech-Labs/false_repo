@@ -17,9 +17,8 @@ def delete_bucket(bucket_name):
         return False
     return True
 
-
+# Driver function
 if __name__ == '__main__':
-    print("List Delete") 
-    BUCKET_NAME= input("Enter unique bucket name: ")
-    # REGION= input("Enter region for your Bucket: ")
-    delete_bucket(bucket_name=BUCKET_NAME) # region=REGION)
+    required="\033[1;3m(Required)\033[0m"
+    BUCKET_NAME= input(f"Enter unique bucket name {required}: ")
+    delete_bucket(bucket_name=BUCKET_NAME)
